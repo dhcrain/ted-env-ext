@@ -10,13 +10,13 @@
 			"32": "images/ted-32.png",
 			"48": "images/ted-48.png",
 			"128": "images/ted-128.png"
-		  }
+		}
 	},
 	"icons": {
 		"16": "images/ted-16.png",
 		"32": "images/ted-32.png",
 		"48": "images/ted-48.png",
 		"128": "images/ted-128.png"
-	  },
+	},
 	"manifest_version": 2
 }
