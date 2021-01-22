@@ -12,7 +12,7 @@
 	<script type="text/javascript" src="chrome-extension-async.js"></script>
 	</head>
 	<body>
-		<p>Open this page in what enviroment?zz</p>
+		<p id="welcome-text"></p>
 		<div class="button-row">
 			<button class="evnButton" type="button"><img id="local8080" src="images/local-8080.png" alt="Local 8080"></button>
 			<button class="evnButton" type="button"><img id="local4200" src="images/local-4200.png" alt="Local 4200"></button>
@@ -23,6 +23,8 @@
 			<button class="evnButton" type="button"><img id="dg" src="images/dg-server-marker.png" alt="DG"></button>
 			<button class="evnButton" type="button"><img id="prod" src="images/prod-server-marker.png" alt="Prod"></button>
 		</div>
-	<script src="popup.js"></script>
+		<p>Hold control or command to open in a new tab</p>
+	<script src="./js/main.js"></script>
+	<script src="./popup.js"></script>
 </body>
 </html>
