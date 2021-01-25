@@ -91,7 +91,7 @@
 				url = url;
 			} else {
 				bug('not local jsp')
-				url = TED + url;
+				url = TED + '/' + url;
 			}
 
 		}
