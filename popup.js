@@ -13,7 +13,7 @@ for (const button of envButtons) {
     try {
       // console.log(event);
       const activeTab = await getActiveTab()
-      const newUrl = Main.replaceBaseUrl(activeTab, event.target.id);
+      const newUrl = Main.replaceBaseUrl(activeTab.url, event.target.id);
 
       // Open in a new tab if ctrl or meta is pressed at MouseClick
       if (event.ctrlKey || event.metaKey) {

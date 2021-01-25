@@ -1,5 +1,8 @@
+// https://www.sohamkamani.com/blog/javascript/making-a-node-js-test-runner/
+
 // `tests` is a singleton variable that will contain all our tests
 let tests = []
+let passFail = {pass: 0, fail: 0};
 
 
 // The test function accepts a name and a function
@@ -13,18 +16,20 @@ function run() {
 	// `run` runs all the tests in the `tests` array
 	tests.forEach(t => {
 		// For each test, we try to execute the
-		// provided function. 
+		// provided function.
 		try {
 			t.fn()
 			// If there is no exception
 			// that means it ran correctly
 			console.log('✅', t.name)
+			++passFail.pass
 		} catch (e) {
 			// Exceptions, if any, are caught
 			// and the test is considered failed
 			console.log('❌', t.name)
 			// log the stack of the error
 			console.log(e.stack)
+			++passFail.fail
 		}
 	})
 }
@@ -46,4 +51,5 @@ files.forEach(file => {
 // Now that all the tests from all the files are
 // added, run them one after the other
 run()
-
+console.log(`\n✅ ${passFail.pass} Passing tests`)
+console.log(`❌ ${passFail.fail} Failing tests`)
