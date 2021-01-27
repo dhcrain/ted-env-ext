@@ -20,12 +20,7 @@
 
 	this.Main = Object.freeze({
 		init,
-		replaceBaseUrl,
-		TED,
-		INDEX,
-		LOCAL,
-		MODULE,
-		ENV_URLS,
+		replaceBaseUrl
 	});
 
 	async function init(envButtons) {

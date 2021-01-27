@@ -17,16 +17,17 @@ const prodNg = 'https://miloginworker.michigan.gov/tpaas/ted/module/contract/inv
 const dev = 'https://micamdevw.michigan.gov/tpaas/ted/electronicpayer/list';
 const prod = 'https://miloginworker.michigan.gov/tpaas/ted/electronicpayer/list';
 
+const notTed = 'https://google.com';
 const local8080Index = 'http://localhost:8080/ted/index';
 const dgIndex = 'https://miloginworkerqa.michigan.gov/tpaasdg/ted/index';
 
 
 test('Current tab is not TED to local', () => {
-    assert.equal(m.Main.replaceBaseUrl('https://google.com', 'local8080'), local8080Index);
+    assert.equal(m.Main.replaceBaseUrl(notTed, 'local8080'), local8080Index);
 });
 
 test('Current tab is not TED to DG', () => {
-    assert.equal(m.Main.replaceBaseUrl('https://google.com', 'dg'), dgIndex);
+    assert.equal(m.Main.replaceBaseUrl(notTed, 'dg'), dgIndex);
 });
 
 test('NG should dev to local ng', () => {
