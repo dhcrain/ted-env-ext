@@ -58,15 +58,24 @@
 
 		const destinationIsLocalNg = isNgPage && newEnvBaseUrl == ENV_URLS.local4200;
 
-		//  todo: strip uuid when switching envs
-		// const devToLocal = urlParts[0] == ENV_URLS.dev && destinationIsLocal;
-		// const localToDev = currentIsLocal && newEnvBaseUrl == ENV_URLS.dev;
-		// const isSameEnv = devToLocal || localToDev;
-
 		// clean url, remove /ted or module or local....
 		url = url.replace(ENV_URLS[fromEnv], '').replace(TED, '').replace(MODULE, '').replace(LOCAL, '');
 		while( url.charAt(0) == '/' ) {
 			url = url.substring(1);
+		}
+
+		const devToLocal = fromEnv == 'dev' && destinationIsLocal;
+		const localToDev = currentIsLocal && newEnvBaseUrl == ENV_URLS.dev;
+		const isSameEnv = devToLocal || localToDev;
+
+		bug('devToLocal: ' + devToLocal);
+		bug('localToDev: ' + localToDev);
+		bug('isSameEnv: ' + isSameEnv);
+
+		//  strip uuid when switching envs
+		if (!isSameEnv) {
+			bug('!isSameEnv strip uuid')
+			url = url.replaceAll(/\/(\w+\-){4}\w+/g, '');
 		}
 
 		// make new url
