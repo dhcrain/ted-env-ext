@@ -18,6 +18,7 @@ const prodNg = 'https://miloginworker.michigan.gov/tpaas/ted/module/contract/inv
 
 const dev = 'https://micamdevw.michigan.gov/tpaas/ted/electronicpayer/list';
 const prod = 'https://miloginworker.michigan.gov/tpaas/ted/electronicpayer/list';
+const local8080 = 'http://localhost:8080/ted/electronicpayer/list';
 
 const notTed = 'https://google.com';
 const local8080Index = 'http://localhost:8080/ted/index';
@@ -50,6 +51,10 @@ test('NG should dev to prod', () => {
 
 test('should dev to prod', () => {
     assert.equal(m.Main.replaceBaseUrl(dev, 'prod'), prod);
+});
+
+test('should dev to local', () => {
+    assert.equal(m.Main.replaceBaseUrl(dev, 'local8080'), local8080);
 });
 
 test('NG should local ng to dev', () => {

@@ -1,6 +1,6 @@
 {
 	"name": "TED Environment Switcher",
-	"version": "0.5",
+	"version": "0.5.1",
 	"description": "Go where you want",
 	"permissions": ["activeTab"],
 	"browser_action": {

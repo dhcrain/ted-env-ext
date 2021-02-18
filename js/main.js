@@ -90,14 +90,7 @@
 			}
 		} else {
 			bug('Not Angular Page')
-			if (destinationIsLocal) {
-				bug('destinationIsLocal')
-				url = url;
-			} else {
-				bug('not local jsp')
-				url = TED + '/' + url;
-			}
-
+			url = TED + '/' + url;
 		}
 
 		if (window == 'debug') {
