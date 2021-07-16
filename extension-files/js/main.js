@@ -3,6 +3,14 @@
 (function () {
 	"use strict";
 
+	if (typeof(window) !== 'undefined') {
+		window.browser = (function () {
+			return window.msBrowser ||
+				window.browser ||
+				window.chrome;
+		})();
+	}
+
 	const TED = "ted";
 	const INDEX = "/index";
 	const LOCAL = "local/";
@@ -24,7 +32,7 @@
 	});
 
 	async function init(envButtons) {
-		const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
+		const tabs = await browser.tabs.query({ active: true, currentWindow: true });
 		const activeTab = tabs[0];
 		const isTedUrl =
 			Object.values(ENV_URLS).findIndex((url) => {
@@ -74,8 +82,8 @@
 
 		//  strip uuid when switching envs
 		if (!isSameEnv) {
-			bug('!isSameEnv strip uuid')
-			url = url.replaceAll(/\/(\w+\-){4}\w+/g, '');
+			bug('!isSameEnv strip uuid');
+			url = url.replace(/\/(\w+\-){4}\w+/g, '');
 		}
 
 		// make new url

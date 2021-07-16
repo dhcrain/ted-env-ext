@@ -7,6 +7,12 @@
 (function () {
     'use strict';
 
+    window.browser = (function () {
+        return window.msBrowser ||
+            window.browser ||
+            window.chrome;
+        })();
+
     /** Wrap a function with a callback with a Promise.
      * @param {function} f The function to wrap, should be pattern: withCallback(arg1, arg2, ... argN, callback).
      * @param {function} parseCB Optional function to parse multiple callback parameters into a single object.
@@ -43,9 +49,9 @@
                         }
 
                         // Chrome extensions always fire the callback, but populate chrome.runtime.lastError with exception details
-                        if (chrome.runtime.lastError)
+                        if (browser.runtime.lastError)
                             // Return as an error for the awaited catch block
-                            reject(new Error(chrome.runtime.lastError.message || `Error thrown by API ${chrome.runtime.lastError}`));
+                            reject(new Error(browser.runtime.lastError.message || `Error thrown by API ${browser.runtime.lastError}`));
                         else {
                             if (parseCB) {
                                 const cbObj = parseCB(...cbArgs);
