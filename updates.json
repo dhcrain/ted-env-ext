@@ -1,0 +1,16 @@
+{
+	"addons": {
+	  "dhcrain.tedEnvExt@gmail.com": {
+		"updates": [
+		  {
+			"version": "0.6.1",
+			"update_link": "https://raw.githubusercontent.com/dhcrain/ted-env-ext/master/ted-env-extension-0.6.1.xpi"
+		  },
+		  {
+			"version": "0.6.2",
+			"update_link": "https://raw.githubusercontent.com/dhcrain/ted-env-ext/master/ted-env-extension-0.6.2.xpi"
+		  }
+		]
+	  }
+	}
+  }
