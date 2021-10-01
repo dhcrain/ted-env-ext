@@ -1,6 +1,6 @@
-"use strict"
+"use strict";
 
-window.browser = (function() {
+window.browser = (function () {
   return window.msBrowser || window.browser || window.chrome;
 })();
 
@@ -12,7 +12,7 @@ async function getActiveTab() {
 const envButtons = document.getElementsByClassName("evnButton");
 
 for (const button of envButtons) {
-  button.onclick = async function(event) {
+  button.onclick = async function (event) {
     try {
       // console.log(event);
       const activeTab = await getActiveTab();
@@ -20,9 +20,9 @@ for (const button of envButtons) {
 
       // Open in a new tab if ctrl or meta is pressed at MouseClick
       if (event.ctrlKey || event.metaKey) {
-        browser.tabs.create({url : newUrl, index : activeTab.index + 1});
+        browser.tabs.create({ url: newUrl, index: activeTab.index + 1 });
       } else {
-        browser.tabs.update(activeTab.id, {url : newUrl});
+        browser.tabs.update(activeTab.id, { url: newUrl });
       }
 
       window.close();
