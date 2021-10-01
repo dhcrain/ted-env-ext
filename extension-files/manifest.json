@@ -20,8 +20,7 @@
 	},
 	"browser_specific_settings": {
 		"gecko": {
-		  "id": "dhcrain.tedEnvExt@gmail.com",
-		  "update_url": "https://raw.githubusercontent.com/dhcrain/ted-env-ext/master/updates.json"
+		  "id": "dhcrain.tedEnvExt@gmail.com"
 		}
 	  },
 	"manifest_version": 2

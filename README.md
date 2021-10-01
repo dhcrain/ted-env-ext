@@ -8,7 +8,7 @@ PRs welcome: https://github.com/dhcrain/ted-env-ext
 
 To package:
 '''bash
-zip -r -FS ../ted-env-extension.zip * --exclude '*.git*' --exclude 'testing/*'
+zip -r -FS ../ted-env-extension-0.6.2.xpi * --exclude '*.git*' --exclude 'testing/*' --exclude '*.zip' --exclude '*.xpi'
 '''
 
 For Firefox rename file to ted-env-extension-0.6.2.xpi
