@@ -1,6 +1,6 @@
 {
 	"name": "TED Environment Switcher",
-	"version": "0.5.1",
+	"version": "0.6.2",
 	"description": "Go where you want",
 	"permissions": ["activeTab"],
 	"browser_action": {
@@ -18,5 +18,10 @@
 		"48": "images/ted-48.png",
 		"128": "images/ted-128.png"
 	},
+	"browser_specific_settings": {
+		"gecko": {
+		  "id": "dhcrain.tedEnvExt@gmail.com"
+		}
+	  },
 	"manifest_version": 2
 }

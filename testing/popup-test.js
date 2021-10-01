@@ -1,7 +1,7 @@
 'use strict'
 
 const assert = require('assert');
-const m = require('../js/main');
+const m = require('../extension-files/js/main');
 
 // RUN: node test.js ./popup-test.js
 
