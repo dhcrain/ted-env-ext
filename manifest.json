@@ -1,22 +1,23 @@
 {
-	"name": "TED Environment Switcher",
-	"version": "0.5.1",
+	"name": "1W links",
+	"version": "0.0.1",
 	"description": "Go where you want",
 	"permissions": ["activeTab"],
-	"browser_action": {
+	"action": {
 		"default_popup": "popup.html",
+		"default_title": "Click Me",
 		"default_icon": {
-			"16": "images/ted-16.png",
-			"32": "images/ted-32.png",
-			"48": "images/ted-48.png",
-			"128": "images/ted-128.png"
+			"16": "images/cw-16.png",
+			"32": "images/cw-32.png",
+			"48": "images/cw-48.png",
+			"128": "images/cw-128.png"
 		}
 	},
 	"icons": {
-		"16": "images/ted-16.png",
-		"32": "images/ted-32.png",
-		"48": "images/ted-48.png",
-		"128": "images/ted-128.png"
+		"16": "images/cw-16.png",
+		"32": "images/cw-32.png",
+		"48": "images/cw-48.png",
+		"128": "images/cw-128.png"
 	},
-	"manifest_version": 2
+	"manifest_version": 3
 }

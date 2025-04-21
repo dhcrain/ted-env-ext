@@ -1,30 +1,194 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
 	<style>
-		button {
-			border: none;
+		body {
+			margin: 1;
 		}
-		.button-row {
-			display: inline-flex;
+		.hide {
+			display: none;
+		}
+		.tg {
+			border-collapse: collapse;
+			border-spacing: 0;
+		}
+
+		.tg td {
+			border-color: black;
+			border-style: solid;
+			border-width: 1px;
+			font-family: Arial, sans-serif;
+			font-size: 14px;
+			overflow: hidden;
+			padding: 10px 5px;
+			word-break: normal;
+		}
+
+		.tg th {
+			border-color: black;
+			border-style: solid;
+			border-width: 1px;
+			font-family: Arial, sans-serif;
+			font-size: 14px;
+			font-weight: normal;
+			overflow: hidden;
+			padding: 10px 5px;
+			word-break: normal;
+		}
+
+		.tg .tg-0lax {
+			text-align: left;
+			vertical-align: top
 		}
 	</style>
 	<script type="text/javascript" src="./js/chrome-extension-async.js"></script>
-	</head>
-	<body>
-		<p id="welcome-text"></p>
-		<div class="button-row">
-			<button class="evnButton" type="button"><img id="local8080" src="images/local-8080.png" alt="Local 8080"></button>
-			<button class="evnButton" type="button"><img id="local4200" src="images/local-4200.png" alt="Local 4200"></button>
-			<button class="evnButton" type="button"><img id="dev" src="images/dev-server-marker.png" alt="Dev"></button>
-		</div>
-		<div class="button-row">
-			<button class="evnButton" type="button"><img id="qa" src="images/qa-server-marker.png" alt="QA"></button>
-			<button class="evnButton" type="button"><img id="dg" src="images/dg-server-marker.png" alt="DG"></button>
-			<button class="evnButton" type="button"><img id="prod" src="images/prod-server-marker.png" alt="Prod"></button>
-		</div>
-		<p>Hold control or command to open in a new tab</p>
+</head>
+
+<body>
+	<p>Hold control or command to open in a new tab</p>
+	<table id="env-service-links" class="tg" width="100%">
+		<thead class="hide">
+			<tr>
+				<th class="tg-0lax env-cols" id="services"></th>
+				<th class="tg-0lax env-cols" id="local">Local</th>
+				<th class="tg-0lax env-cols" id="dev">Dev</th>
+				<th class="tg-0lax env-cols" id="test">Test</th>
+				<th class="tg-0lax env-cols" id="stage">Stage</th>
+				<th class="tg-0lax env-cols" id="prod">Prod</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="service" id="eligibility">
+				<td class="tg-0lax">Eligibility</td>
+				<td class="tg-0lax">
+					<button type="button" class="service-btn">Local</button>
+				</td>
+				<td class="tg-0lax">
+					<button type="button" class="service-btn">Dev</button>
+				</td>
+				<td class="tg-0lax">
+					<button type="button"class="service-btn">Test</button>
+				</td>
+				<td class="tg-0lax">
+					<button type="button"class="service-btn">Stage</button>
+				</td>
+				<td class="tg-0lax">
+					<button type="button"class="service-btn">Prod</button>
+				</td>
+			</tr>
+			<tr class="service" id="benefit-hub">
+				<td class="tg-0lax">Benefit Hub</td>
+				<td class="tg-0lax">
+					<button type="button" class="service-btn">Local</button>
+				</td>
+				<td class="tg-0lax">
+					<button type="button" class="service-btn">Dev</button>
+				</td>
+				<td class="tg-0lax">
+					<button type="button"class="service-btn">Test</button>
+				</td>
+				<td class="tg-0lax">
+					<button type="button"class="service-btn">Stage</button>
+				</td>
+				<td class="tg-0lax">
+					<button type="button"class="service-btn">Prod</button>
+				</td>
+			</tr>
+			<tr class="service" id="reports">
+				<td class="tg-0lax">Reports</td>
+				<td class="tg-0lax">
+					<button type="button" class="service-btn">Local</button>
+				</td>
+				<td class="tg-0lax">
+					<button type="button" class="service-btn">Dev</button>
+				</td>
+				<td class="tg-0lax">
+					<button type="button"class="service-btn">Test</button>
+				</td>
+				<td class="tg-0lax">
+					<button type="button"class="service-btn">Stage</button>
+				</td>
+				<td class="tg-0lax">
+					<button type="button"class="service-btn">Prod</button>
+				</td>
+			</tr>
+			<tr class="service" id="rewards">
+				<td class="tg-0lax">Rewards</td>
+				<td class="tg-0lax">
+					<button type="button" class="service-btn">Local</button>
+				</td>
+				<td class="tg-0lax">
+					<button type="button" class="service-btn">Dev</button>
+				</td>
+				<td class="tg-0lax">
+					<button type="button"class="service-btn">Test</button>
+				</td>
+				<td class="tg-0lax">
+					<button type="button"class="service-btn">Stage</button>
+				</td>
+				<td class="tg-0lax">
+					<button type="button"class="service-btn">Prod</button>
+				</td>
+			</tr>
+			<tr class="service" id="cerberus">
+				<td class="tg-0lax">Cerberus GraphQL</td>
+				<td class="tg-0lax">
+					<button type="button" class="service-btn">Local</button>
+				</td>
+				<td class="tg-0lax">
+					<button type="button" class="service-btn">Dev</button>
+				</td>
+				<td class="tg-0lax">
+					<button type="button"class="service-btn">Test</button>
+				</td>
+				<td class="tg-0lax">
+					<button type="button"class="service-btn">Stage</button>
+				</td>
+				<td class="tg-0lax">
+					<button type="button"class="service-btn">Prod</button>
+				</td>
+			</tr>
+			<tr class="service" id="portal">
+				<td class="tg-0lax">Partner Portal</td>
+				<td class="tg-0lax">
+					<button type="button" class="service-btn">Local</button>
+				</td>
+				<td class="tg-0lax">
+					<button type="button" class="service-btn">Dev</button>
+				</td>
+				<td class="tg-0lax">
+					<button type="button"class="service-btn">Test</button>
+				</td>
+				<td class="tg-0lax">
+					<button type="button"class="service-btn">Stage</button>
+				</td>
+				<td class="tg-0lax">
+					<button type="button"class="service-btn">Prod</button>
+				</td>
+			</tr>
+			<tr class="service" id="admin">
+				<td class="tg-0lax">Internal Admin</td>
+				<td class="tg-0lax">
+					<button type="button" class="service-btn">Local</button>
+				</td>
+				<td class="tg-0lax">
+					<button type="button" class="service-btn">Dev</button>
+				</td>
+				<td class="tg-0lax">
+					<button type="button"class="service-btn">Test</button>
+				</td>
+				<td class="tg-0lax">
+					<button type="button"class="service-btn">Stage</button>
+				</td>
+				<td class="tg-0lax">
+					<button type="button"class="service-btn">Prod</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 	<script src="./js/main.js"></script>
 	<script src="./popup.js"></script>
 </body>
+
 </html>

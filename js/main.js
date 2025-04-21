@@ -3,106 +3,68 @@
 (function () {
 	"use strict";
 
-	const TED = "ted";
-	const INDEX = "/index";
-	const LOCAL = "local/";
-	const MODULE = "module/";
-	const ENV_URLS = {
-		local8080: "http://localhost:8080/",
-		local4200: "http://localhost:4200/",
-		dev: "https://micamdevw.michigan.gov/tpaas/",
-		qa: "https://miloginworkerqa.michigan.gov/tpaas/",
-		dg: "https://miloginworkerqa.michigan.gov/tpaasdg/",
-		prod: "https://miloginworker.michigan.gov/tpaas/",
-	};
+	const HTTPS = 'https://'
+	const ADMIN = 'admin/'
 
-	let bugs = [];
+	const ENV_URLS = [
+		{service: 'eligibility', env: 'local', url: 'http://localhost:8002/admin/'},
+		{service: 'eligibility', env: 'dev'},
+		{service: 'eligibility', env: 'test'},
+		{service: 'eligibility', env: 'stage'},
+		{service: 'eligibility', env: 'prod'},
+		{service: 'reports', env: 'local', url: 'http://localhost:8001/admin/'},
+		{service: 'reports', env: 'dev'},
+		{service: 'reports', env: 'test'},
+		{service: 'reports', env: 'stage'},
+		{service: 'reports', env: 'prod'},
+		{service: 'benefit-hub', env: 'local', url: 'http://localhost:8000/admin/'},
+		{service: 'benefit-hub', env: 'dev'},
+		{service: 'benefit-hub', env: 'test'},
+		{service: 'benefit-hub', env: 'stage'},
+		{service: 'benefit-hub', env: 'prod'},
+		{service: 'rewards', env: 'local', url: 'http://localhost:8004/admin/'},
+		{service: 'rewards', env: 'dev'},
+		{service: 'rewards', env: 'test'},
+		{service: 'rewards', env: 'stage'},
+		{service: 'rewards', env: 'prod'},
+		{service: 'cerberus', env: 'local', url: 'http://localhost:8003/api/graphql'},
+		{service: 'cerberus', env: 'dev', url: 'https://cerberus.cerberus.dev.k8s.pelotime.com/api/graphql/'},
+		{service: 'cerberus', env: 'test', url: 'https://cerberus.ge.test.k8s.onepeloton.com/api/graphql/'},
+		{service: 'cerberus', env: 'stage', url: 'https://cerberus.ge.stage.k8s.onepeloton.com/api/graphql/'},
+		{service: 'cerberus', env: 'prod', url: 'https://benefits-gateway.onepeloton.com/api/graphql/'},
+		{service: 'portal', env: 'local', url: 'http://localhost:3000/benefit-admin/uploads'},
+		{service: 'portal', env: 'dev', url: 'https://dev--benefits.test.onepeloton.com/benefit-admin/uploads'},
+		{service: 'portal', env: 'test', url: 'https://test--benefits.test.onepeloton.com/benefit-admin/uploads'},
+		{service: 'portal', env: 'stage', url: 'http://benefits.test.onepeloton.com/benefit-admin/uploads'},
+		{service: 'portal', env: 'prod', url: 'https://benefits.onepeloton.com/benefit-admin/uploads'},
+		{service: 'admin', env: 'local', url: 'http://localhost:3000/partners/'},
+		{service: 'admin', env: 'dev', url: 'https://dev--benefits-admin.test.onepeloton.com/partners'},
+		{service: 'admin', env: 'test', url: 'https://test--benefits-admin.test.onepeloton.com/partners'},
+		{service: 'admin', env: 'stage', url: 'http://benefits-admin.test.onepeloton.com/partners'},
+		{service: 'admin', env: 'prod', url: 'https://admin.benefits.onepeloton.com/partners'},
+	]
 
 	this.Main = Object.freeze({
 		init,
-		replaceBaseUrl
+		getUrl,
+		ENV_URLS
 	});
 
-	async function init(envButtons) {
+	async function init() {
 		const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
 		const activeTab = tabs[0];
-		const isTedUrl =
-			Object.values(ENV_URLS).findIndex((url) => {
-				return activeTab.url.startsWith(url);
-			}, activeTab.url) > -1;
-		// Display text based on what the current url is
-		const text = isTedUrl
-			? "Open this page in what environment?"
-			: "Go to TED environment";
-		const welcomeText = document.getElementById("welcome-text");
-		welcomeText.innerHTML = text;
 		return activeTab;
 	}
 
-	function replaceBaseUrl(url, targetId) {
-		const newEnvBaseUrl = ENV_URLS[targetId];
+	function getUrl(env, service) {
+		const target = ENV_URLS.find(url => url.env == env && url.service == service)
 
-		let fromEnv = Object.keys(ENV_URLS).find(key => url.indexOf(ENV_URLS[key]) > -1)
-
-		if (!fromEnv) {
-			// If you are not on a TED page will open that env index page
-			bug('not TED url');
-			return newEnvBaseUrl + TED + INDEX;
-		}
-
-		const currentIsLocal = fromEnv == 'local4200' || fromEnv == 'local8080'
-
-		const destinationIsLocal = newEnvBaseUrl.indexOf("localhost") > -1;
-
-		const isNgPage = url.indexOf(LOCAL) > -1 || url.indexOf(MODULE) > -1;
-
-		const destinationIsLocalNg = isNgPage && newEnvBaseUrl == ENV_URLS.local4200;
-
-		// clean url, remove /ted or module or local....
-		url = url.replace(ENV_URLS[fromEnv], '').replace(TED, '').replace(MODULE, '').replace(LOCAL, '');
-		while( url.charAt(0) == '/' ) {
-			url = url.substring(1);
-		}
-
-		const devToLocal = fromEnv == 'dev' && destinationIsLocal;
-		const localToDev = currentIsLocal && newEnvBaseUrl == ENV_URLS.dev;
-		const isSameEnv = devToLocal || localToDev;
-
-		bug('devToLocal: ' + devToLocal);
-		bug('localToDev: ' + localToDev);
-		bug('isSameEnv: ' + isSameEnv);
-
-		//  strip uuid when switching envs
-		if (!isSameEnv) {
-			bug('!isSameEnv strip uuid')
-			url = url.replaceAll(/\/(\w+\-){4}\w+/g, '');
-		}
-
-		// make new url
-		if (isNgPage) {
-			bug('isNgPage')
-			if (destinationIsLocalNg) {
-				bug('ng destinationIsLocal')
-				url = LOCAL + url;
-			} else {
-				bug('not local ng page')
-				url = TED + '/' + MODULE + url;
-			}
+		if (target.url) {
+			return target.url
 		} else {
-			bug('Not Angular Page')
-			url = TED + '/' + url;
+			// For Django admin urls
+			return `${HTTPS}${service}.ge.${env}.k8s.pelotime.com/${ADMIN}`
 		}
-
-		if (window == 'debug') {
-			console.warn("bugs: " + bugs);
-		}
-		bugs = [];
-
-		return newEnvBaseUrl + url;
-	}
-
-	function bug(newBug) {
-		bugs.push(newBug);
 	}
 
 }.call(this));
