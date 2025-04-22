@@ -4,4 +4,7 @@ Click on the buttons in the Chrome extension shortcut to open the page you are o
 
 Control click to open in a new tab
 
-PRs welcome: https://github.com/dhcrain/1w-env-ext
+PRs welcome: https://github.com/dhcrain/ted-env-ext
+
+How to install an unpacked extension in Chrome:
+https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world#load-unpacked
